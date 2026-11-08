@@ -1,0 +1,128 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1">
+
+    <title>15-112 Local Wordle</title>
+
+    <style>
+        body {
+            font-family: system-ui, Arial;
+            background: #12171b;
+            color: #f7f7f7;
+            text-align: center;
+            margin: 0;
+            padding: 24px;
+        }
+
+        h1 {
+            letter-spacing: 0.12em;
+        }
+
+        #board {
+            display: grid;
+            grid-template-columns: repeat(5, 56px);
+            gap: 7px;
+            justify-content: center;
+            margin: 24px auto;
+        }
+
+        .tile {
+            width: 56px;
+            height: 56px;
+            border: 2px solid #555;
+            display: grid;
+            place-items: center;
+            font-size: 28px;
+            font-weight: 700;
+            box-sizing: border-box;
+        }
+
+        .green {
+            background: #538d4e;
+            border-color: #538d4e;
+        }
+
+        .yellow {
+            background: #b59f3b;
+            border-color: #b59f3b;
+        }
+
+        .gray {
+            background: #3a3a3c;
+            border-color: #3a3a3c;
+        }
+
+        input {
+            font-size: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            width: 145px;
+            padding: 8px;
+        }
+
+        button {
+            font-size: 16px;
+            padding: 9px;
+            margin-left: 5px;
+        }
+
+        #status {
+            min-height: 25px;
+        }
+
+        small {
+            color: #bbb;
+        }
+
+        #history {
+            margin: 0 auto;
+            max-width: 400px;
+            text-align: left;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>WORDLE LAB</h1>
+
+    <p>Guess the five-letter word in six tries.</p>
+
+    <div id="board" aria-label="Wordle board"></div>
+
+    <form id="guess-form">
+        <label for="guess-input">Guess:</label>
+
+        <input
+            id="guess-input"
+            maxlength="5"
+            autocomplete="off"
+            spellcheck="false"
+            pattern="[a-zA-Z]{5}"
+            required
+        >
+
+        <button id="submit-guess" type="submit">
+            Enter
+        </button>
+    </form>
+
+    <p id="status" role="status" data-state="playing">
+        Make your first guess!
+    </p>
+
+    <small>
+        G = green (right spot),
+        Y = yellow (wrong spot),
+        - = gray.
+        For teaching: use ?answer=crane in the URL.
+    </small>
+
+    <div id="history" aria-label="Guess history"></div>
+
+    <script src="game.js"></script>
+</body>
+</html>
